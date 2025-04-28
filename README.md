@@ -123,56 +123,98 @@ Purpose: Cloud platforms used to host and deploy the web application to make it 
 
 🗄️ Database Design
 This section outlines the core entities in the Airbnb clone project and their relationships. The database is designed to capture essential aspects of the platform, such as users, properties, bookings, and reviews.
+
 🔹 User
 Represents people using the platform, either as guests or hosts.
-•	Fields:
-o	id: Unique identifier
-o	username: Login name for the user
-o	email: Contact email
-o	is_host: Boolean to identify hosts vs. guests
-o	date_joined: Account creation date
+
+Fields:
+
+id: Unique identifier
+
+username: Login name for the user
+
+email: Contact email
+
+is_host: Boolean to identify hosts vs. guests
+
+date_joined: Account creation date
+
 🔹 Property
 Represents a place listed by a host.
-•	Fields:
-o	id: Unique identifier
-o	title: Name of the property
-o	description: Detailed description of the property
-o	location: Address or city
-o	price_per_night: Cost of staying one night
-o	host: ForeignKey → User
+
+Fields:
+
+id: Unique identifier
+
+title: Name of the property
+
+description: Detailed description of the property
+
+location: Address or city
+
+price_per_night: Cost of staying one night
+
+host: ForeignKey → User
+
 🔹 Booking
 Represents a reservation made by a guest for a property.
-•	Fields:
-o	id: Unique identifier
-o	property: ForeignKey → Property
-o	guest: ForeignKey → User
-o	check_in: Start date of the booking
-o	check_out: End date of the booking
-o	total_price: Calculated based on nights and price
+
+Fields:
+
+id: Unique identifier
+
+property: ForeignKey → Property
+
+guest: ForeignKey → User
+
+check_in: Start date of the booking
+
+check_out: End date of the booking
+
+total_price: Calculated based on nights and price
+
 🔹 Review
 Represents feedback left by a guest after a stay.
-•	Fields:
-o	id: Unique identifier
-o	property: ForeignKey → Property
-o	author: ForeignKey → User
-o	rating: Integer (1–5)
-o	comment: Text content of the review
+
+Fields:
+
+id: Unique identifier
+
+property: ForeignKey → Property
+
+author: ForeignKey → User
+
+rating: Integer (1–5)
+
+comment: Text content of the review
+
 🔹 Payment
 Represents the financial transaction for a booking.
-•	Fields:
-o	id: Unique identifier
-o	booking: OneToOne → Booking
-o	amount: Total amount paid
-o	payment_date: Date of transaction
-o	payment_method: e.g., credit card, PayPal
-________________________________________
+
+Fields:
+
+id: Unique identifier
+
+booking: OneToOne → Booking
+
+amount: Total amount paid
+
+payment_date: Date of transaction
+
+payment_method: e.g., credit card, PayPal
+
 🔗 Entity Relationships
-•	A User can list multiple Properties (One-to-Many).
-•	A User can make multiple Bookings (One-to-Many).
-•	A Booking is for one Property, made by one User (Many-to-One).
-•	A Property can have many Reviews and Bookings (One-to-Many).
-•	A Review is written by a User about a Property (Many-to-One).
-•	A Payment is linked to exactly one Booking (One-to-One).
+A User can list multiple Properties (One-to-Many).
+
+A User can make multiple Bookings (One-to-Many).
+
+A Booking is for one Property, made by one User (Many-to-One).
+
+A Property can have many Reviews and Bookings (One-to-Many).
+
+A Review is written by a User about a Property (Many-to-One).
+
+A Payment is linked to exactly one Booking (One-to-One).
 
 🧩 Feature Breakdown
 This project replicates essential functionalities of the Airbnb platform. Each feature is designed to provide users with a seamless and interactive experience, whether they are guests or hosts.
@@ -228,8 +270,18 @@ Why it matters: Ensures that financial transactions are processed securely and s
 ⚙️ CI/CD Pipeline
 What is CI/CD?
 CI/CD stands for Continuous Integration and Continuous Deployment/Delivery. It is a set of practices that automate the process of building, testing, and deploying code. Every time code is pushed to the repository, automated pipelines ensure that the changes are validated and safely deployed.
+
 Why It's Important
 Implementing a CI/CD pipeline helps maintain code quality, reduces the chances of bugs reaching production, and speeds up the development lifecycle. It ensures consistent deployments, simplifies collaboration between developers, and allows quick detection of issues through automated tests.
+
+Tools for CI/CD
+GitHub Actions: Automates workflows like running tests, linting code, and deploying apps directly from GitHub.
+
+Docker: Provides containerized environments for consistent builds and deployments across different systems.
+
+Heroku / AWS / Render (Deployment Targets): Can be integrated into the pipeline for auto-deploying successful builds.
+
+pytest / unittest (Testing Tools): Used to validate functionality before deployment.
 Tools for CI/CD
 •	GitHub Actions: Automates workflows like running tests, linting code, and deploying apps directly from GitHub.
 •	Docker: Provides containerized environments for consistent builds and deployments across different systems.
